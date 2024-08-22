@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "${api-endpoint}")
 
 public class UserController {
-    @GetMapping()
+    @GetMapping(path = "/login")
     public ResponseEntity<Map<String, String>> login(){
 
         SecurityContext securityContext = SecurityContextHolder.getContext();
