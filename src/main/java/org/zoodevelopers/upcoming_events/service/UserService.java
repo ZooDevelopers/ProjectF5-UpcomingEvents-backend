@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService {
        return repository
         .findByUsername(username)
         .map(SecurityUser::new)
-        .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con el nombre de usuario: " + username));
+        .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 
     
