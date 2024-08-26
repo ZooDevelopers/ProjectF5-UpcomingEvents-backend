@@ -1,10 +1,13 @@
 package org.zoodevelopers.upcoming_events.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,21 +18,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
+
+    @Column(name = "profile")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Profile profile;
+
     @Column(name = "role")
     private String role = "ROLE_ADMIN";
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String role) {
+    public User(Long id, String username, String password, String role, Profile profile) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.role = "ROLE_ADMIN";
+        this.profile = profile;
     }
 
     public Long getId() {
@@ -64,4 +75,13 @@ public class User {
         this.role = role;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    
 }
