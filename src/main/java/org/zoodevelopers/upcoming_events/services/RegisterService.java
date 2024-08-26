@@ -14,7 +14,6 @@ public class RegisterService {
 
     /* RoleService roleService; */
  /* IEncryptFacade encoderFacade; */
-
     public RegisterService(UserRepository repository, RoleService roleService, IEncryptFacade encoderFacade) {
         this.repository = repository;
         /* this.roleService = roleService;

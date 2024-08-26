@@ -1,56 +1,61 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
-
 package org.zoodevelopers.upcoming_events.controllers;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.zoodevelopers.upcoming_events.dtos.UserDto;
- 
-/**
- *
- * @author giselasoledadhurtado
- */
+import org.zoodevelopers.upcoming_events.services.RegisterService;
+
 public class RegisterControllerTest {
 
-     public RegisterControllerTest() {
-    }
+    @Mock
+    private RegisterService registerService;
 
-    @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
+    @InjectMocks
+    private RegisterController registerController;
 
     @BeforeEach
     public void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
-    @AfterEach
-    public void tearDown() {
-    }
-
-    /**
-     * Test of register method, of class RegisterController.
-     */
     @Test
-    public void testRegister() {
-        System.out.println("register");
-        UserDto newUser = null;
-        RegisterController instance = null;
-        String expResult = "";
-        String result = instance.register(newUser);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testRegister_Success() {
+        // Given
+        UserDto newUser = new UserDto();
+        newUser.setUsername("testuser");
+        newUser.setPassword("password123");
+        newUser.setEmail("pepito@gmail.com");
+
+        when(registerService.save(newUser)).thenReturn("Success");
+
+        // When
+        String result = registerController.register(newUser);
+
+        // Then
+        assertThat(result, is("Success"));
     }
 
+    @Test
+    public void testRegister_Failure() {
+        // Given
+        UserDto newUser = new UserDto();
+        newUser.setUsername("testuser");
+        newUser.setPassword("password123");
+        newUser.setEmail("pepito@gmail.com");
+
+        when(registerService.save(newUser)).thenReturn("Failure");
+
+        // When
+        String result = registerController.register(newUser);
+
+        // Then
+        assertThat(result, is("Failure"));
+    }
 }
