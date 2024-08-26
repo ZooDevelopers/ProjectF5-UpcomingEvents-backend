@@ -1,4 +1,4 @@
-package org.zoodevelopers.upcoming_events.repository;
+package org.zoodevelopers.upcoming_events.repositories;
 
 import java.util.Optional;
 
