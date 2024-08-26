@@ -17,27 +17,27 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));   
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override
     public String getPassword() {
-     return user.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-     return user.getUsername();
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-       return true;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-       return true;
+        return true;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-      return true;
+        return true;
     }
-    
+
 }
