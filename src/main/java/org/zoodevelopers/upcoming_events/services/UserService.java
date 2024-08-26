@@ -5,8 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.zoodevelopers.upcoming_events.models.SecurityUser;
-import org.zoodevelopers.upcoming_events.repository.UserRepository;
-
+import org.zoodevelopers.upcoming_events.repositories.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -20,11 +19,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("-------------------------------------------------------------------" + username);
-       return repository
-        .findByUsername(username)
-        .map(SecurityUser::new)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        return repository
+                .findByUsername(username)
+                .map(SecurityUser::new)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 
-    
 }

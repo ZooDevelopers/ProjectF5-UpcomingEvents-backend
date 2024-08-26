@@ -1,15 +1,19 @@
 package org.zoodevelopers.upcoming_events.services;
 
+import java.util.HashSet;
+
 import org.springframework.stereotype.Service;
 import org.zoodevelopers.upcoming_events.dtos.UserDto;
-import org.zoodevelopers.upcoming_events.repository.UserRepository;
+import org.zoodevelopers.upcoming_events.implementations.events.IEncryptFacade;
+import org.zoodevelopers.upcoming_events.repositories.UserRepository;
 
 @Service
 public class RegisterService {
 
     UserRepository repository;
+
     /* RoleService roleService; */
-    /* IEncryptFacade encoderFacade; */
+ /* IEncryptFacade encoderFacade; */
 
     public RegisterService(UserRepository repository, RoleService roleService, IEncryptFacade encoderFacade) {
         this.repository = repository;
@@ -20,7 +24,7 @@ public class RegisterService {
     public String save(UserDto newUserDto) {
 
         String passwordDecoded = encoderFacade.decode("base64", newUserDto.getPassword());
-        String passwordEncoded = encoderFacade.encode("bcrypt",  passwordDecoded);
+        String passwordEncoded = encoderFacade.encode("bcrypt", passwordDecoded);
 
         User user = new User(newUserDto.getUsername(), passwordEncoded);
         user.setRoles(assignDefaultRole());
