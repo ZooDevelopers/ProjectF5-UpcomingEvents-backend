@@ -2,18 +2,19 @@ package org.zoodevelopers.upcoming_events.services;
 
 import org.springframework.stereotype.Service;
 import org.zoodevelopers.upcoming_events.dtos.UserDto;
+import org.zoodevelopers.upcoming_events.repository.UserRepository;
 
 @Service
 public class RegisterService {
 
     UserRepository repository;
-    RoleService roleService;
-    IEncryptFacade encoderFacade;
+    /* RoleService roleService; */
+    /* IEncryptFacade encoderFacade; */
 
     public RegisterService(UserRepository repository, RoleService roleService, IEncryptFacade encoderFacade) {
         this.repository = repository;
-        this.roleService = roleService;
-        this.encoderFacade = encoderFacade;
+        /* this.roleService = roleService;
+        this.encoderFacade = encoderFacade; */
     }
 
     public String save(UserDto newUserDto) {

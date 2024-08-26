@@ -6,33 +6,32 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.zoodevelopers.upcoming_events.services.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+        
         @Value("${api-endpoint}")
         String endpoint;
-
-        MyBasicAuthenticationEntryPoint myBasicAuthenticationEntryPoint;
-
-        JpaUserDetailsService jpaUserDetailsService;
-
-        public SecurityConfig(JpaUserDetailsService jpaUserDetailsService, MyBasicAuthenticationEntryPoint basicEntryPoint) {
-                this.jpaUserDetailsService = jpaUserDetailsService;
-                this.myBasicAuthenticationEntryPoint = basicEntryPoint;
-        }
-
+        
+                UserService service;
+                /* MyBasicAuthenticationEntryPoint myBasicAuthenticationEntryPoint; */
+        
+                public SecurityConfig(UserService service/* , MyBasicAuthenticationEntryPoint basicEntryPoint */) {
+                this.service = service;
+                /* this.myBasicAuthenticationEntryPoint = basicEntryPoint; */
+            }
+   
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -51,8 +50,9 @@ public class SecurityConfig {
                                 .requestMatchers( HttpMethod.POST, endpoint + "/register").permitAll()
                                 .requestMatchers(HttpMethod.GET, endpoint + "/**").permitAll()
                                 .anyRequest().authenticated())
-                        .userDetailsService(jpaUserDetailsService)
-                        .httpBasic(basic -> basic.authenticationEntryPoint(myBasicAuthenticationEntryPoint))
+                        .userDetailsService(service)
+                        .httpBasic(Customizer.withDefaults())
+                        /* .httpBasic(basic -> basic.authenticationEntryPoint(myBasicAuthenticationEntryPoint)) */
                         .sessionManagement(session -> session
                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
@@ -73,3 +73,4 @@ public class SecurityConfig {
                 source.registerCorsConfiguration("/**", configuration);
                 return source;
         }
+}
