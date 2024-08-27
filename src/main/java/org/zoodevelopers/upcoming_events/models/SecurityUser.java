@@ -1,7 +1,7 @@
 package org.zoodevelopers.upcoming_events.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,7 +17,15 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : user.getRoles()) {
+            System.out.println("User role : " + role.getName());
+            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
+            authorities.add(authority);
+        }
+
+        return authorities;
     }
 
     @Override
