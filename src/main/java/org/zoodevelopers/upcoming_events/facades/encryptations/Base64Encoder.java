@@ -2,7 +2,7 @@ package org.zoodevelopers.upcoming_events.facades.encryptations;
 
 import java.util.Base64;
 
-import org.zoodevelopers.upcoming_events.implementations.events.IEncoder;
+import org.zoodevelopers.upcoming_events.implementations.IEncoder;
 
 public class Base64Encoder implements IEncoder {
 
