@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -28,10 +27,11 @@ public class SecurityConfig {
 
     UserService service;
 
-    /* MyBasicAuthenticationEntryPoint myBasicAuthenticationEntryPoint; */
-    public SecurityConfig(UserService service/* , MyBasicAuthenticationEntryPoint basicEntryPoint */) {
+    MyBasicAuthenticationEntryPoint myBasicAuthenticationEntryPoint;
+
+    public SecurityConfig(UserService service, MyBasicAuthenticationEntryPoint basicEntryPoint) {
         this.service = service;
-        /* this.myBasicAuthenticationEntryPoint = basicEntryPoint; */
+        this.myBasicAuthenticationEntryPoint = basicEntryPoint;
     }
 
     @Bean
@@ -53,8 +53,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, endpoint + "/**").permitAll()
                 .anyRequest().authenticated())
                 .userDetailsService(service)
-                .httpBasic(Customizer.withDefaults())
-                /* .httpBasic(basic -> basic.authenticationEntryPoint(myBasicAuthenticationEntryPoint)) */
+                .httpBasic(basic -> basic.authenticationEntryPoint(myBasicAuthenticationEntryPoint))
                 .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
