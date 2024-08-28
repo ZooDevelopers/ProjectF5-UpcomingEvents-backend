@@ -25,14 +25,25 @@ public class Events {
     private int maxparticipants;
     private String description;
     private String imageUrl;
+    private String is_featured;
+    private String location;
+    private String time;
+    
+    public Events() {
+        // This is intentionally left empty to allow default instantiation
+    }
 
-    public Events(Long id, String title, LocalDate date, int maxparticipants, String description, String imageUrl) {
+    public Events(Long id, String title, LocalDate date, int maxparticipants, String description, String imageUrl,
+            String is_featured, String location, String time) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.maxparticipants = maxparticipants;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.is_featured = is_featured;
+        this.location = location;
+        this.time = time;
     }
 
     public Long getId() {
@@ -83,11 +94,29 @@ public class Events {
         this.imageUrl = imageUrl;
     }
 
-    
+    public String getIs_featured() {
+        return is_featured;
+    }
 
-    
+    public void setIs_featured(String is_featured) {
+        this.is_featured = is_featured;
+    }
 
+    public String getLocation() {
+        return location;
+    }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     
 }
