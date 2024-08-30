@@ -1,4 +1,4 @@
-package org.zoodevelopers.upcoming_events.implementations.events;
+package org.zoodevelopers.upcoming_events.implementations;
 
 public interface IEncryptFacade {
 

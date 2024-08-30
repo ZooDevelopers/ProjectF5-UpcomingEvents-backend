@@ -2,8 +2,10 @@ package org.zoodevelopers.upcoming_events.facades.encryptations;
 
 import java.util.Base64;
 
-import org.zoodevelopers.upcoming_events.implementations.events.IEncoder;
+import org.springframework.stereotype.Component;
+import org.zoodevelopers.upcoming_events.implementations.IEncoder;
 
+@Component
 public class Base64Encoder implements IEncoder {
 
     @Override

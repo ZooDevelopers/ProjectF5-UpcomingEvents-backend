@@ -3,7 +3,7 @@ package org.zoodevelopers.upcoming_events.facades;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.zoodevelopers.upcoming_events.facades.encryptations.Base64Encoder;
-import org.zoodevelopers.upcoming_events.implementations.events.IEncryptFacade;
+import org.zoodevelopers.upcoming_events.implementations.IEncryptFacade;
 
 @Component
 public class EncoderFacade implements IEncryptFacade {
@@ -20,10 +20,10 @@ public class EncoderFacade implements IEncryptFacade {
     public String encode(String type, String data) {
         String dataEncrypted = "";
 
-        if ("bcrypt".equals(type)) {
+        if (type == "bcrypt") {
             dataEncrypted = bCryptPasswordEncoder.encode(data);
         }
-        if ("base64".equals(type)) {
+        if (type == "base64") {
             dataEncrypted = base64Encoder.encode(data);
         }
 
@@ -34,7 +34,7 @@ public class EncoderFacade implements IEncryptFacade {
     public String decode(String type, String data) {
         String dataDecoded = "";
 
-        if ("base64".equals(type)) {
+        if (type == "base64") {
             dataDecoded = base64Encoder.decode(data);
         }
 
