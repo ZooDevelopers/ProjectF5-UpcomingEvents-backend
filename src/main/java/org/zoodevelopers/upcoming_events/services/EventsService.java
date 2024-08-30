@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.zoodevelopers.upcoming_events.models.Events;
-import org.zoodevelopers.upcoming_events.repository.EventsRepository;
+import org.zoodevelopers.upcoming_events.repositories.EventsRepository;
 
 @Service
 public class EventsService {
