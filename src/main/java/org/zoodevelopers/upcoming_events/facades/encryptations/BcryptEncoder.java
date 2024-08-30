@@ -1,7 +1,7 @@
 package org.zoodevelopers.upcoming_events.facades.encryptations;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.zoodevelopers.upcoming_events.implementations.events.IEncoder;
+import org.zoodevelopers.upcoming_events.implementations.IEncoder;
 
 public class BcryptEncoder implements IEncoder {
 
