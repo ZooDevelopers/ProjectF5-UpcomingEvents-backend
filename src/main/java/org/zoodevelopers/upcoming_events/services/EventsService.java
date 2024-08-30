@@ -7,7 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.zoodevelopers.upcoming_events.models.Events;
-import org.zoodevelopers.upcoming_events.repository.EventsRepository;
+import org.zoodevelopers.upcoming_events.repositories.EventsRepository;
+import org.zoodevelopers.upcoming_events.services.exceptions.EventsNotFoundException;
 
 @Service
 public class EventsService {
@@ -20,7 +21,7 @@ public class EventsService {
 
     public Events updateEvents(Long id, Events updatedEvents) {
         Events events = eventsRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Events not found"));
+        .orElseThrow(() -> new EventsNotFoundException("Events not found"));
 
         events.setTitle(updatedEvents.getTitle());
         events.setDate(updatedEvents.getDate());
