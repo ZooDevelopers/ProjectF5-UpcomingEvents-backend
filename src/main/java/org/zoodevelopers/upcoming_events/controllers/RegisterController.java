@@ -8,7 +8,7 @@ import org.zoodevelopers.upcoming_events.dtos.UserDto;
 import org.zoodevelopers.upcoming_events.services.RegisterService;
 
 @RestController
-@RequestMapping(path = "${api-endpoint}/register")
+@RequestMapping(path = "/api/v1/register")
 public class RegisterController {
 
     RegisterService service;
