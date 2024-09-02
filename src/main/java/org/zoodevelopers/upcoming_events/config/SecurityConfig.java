@@ -22,7 +22,7 @@ import org.zoodevelopers.upcoming_events.services.UserService;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${api-endpoint}")
+    @Value("/api/v1/register")
     String endpoint;
 
     UserService service;
