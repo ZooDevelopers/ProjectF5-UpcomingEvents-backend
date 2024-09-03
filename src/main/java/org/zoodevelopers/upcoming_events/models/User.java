@@ -37,49 +37,62 @@ public class User {
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "event_registrations", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+    private Set<Events> registeredEvents;
+
+    
     public User() {
     }
-
+    
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
+    
     public User(String username, String password, Profile profile) {
         this.username = username;
         this.password = password;
         this.profile = profile;
     }
-
+    
     public String getUsername() {
         return username;
     }
-
+    
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
     public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     public Profile getProfile() {
         return profile;
     }
-
+    
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
-
+    
     public Set<Role> getRoles() {
         return roles;
     }
-
+    
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    
+    public Set<Events> getRegisteredEvents() {
+        return registeredEvents;
+    }
+    
+    public void setRegisteredEvents(Set<Events> registeredEvents) {
+        this.registeredEvents = registeredEvents;
     }
 }
