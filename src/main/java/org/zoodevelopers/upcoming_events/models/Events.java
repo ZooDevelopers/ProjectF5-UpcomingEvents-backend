@@ -1,4 +1,4 @@
-package org.zoodevelopers.upcoming_events.models;
+    package org.zoodevelopers.upcoming_events.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

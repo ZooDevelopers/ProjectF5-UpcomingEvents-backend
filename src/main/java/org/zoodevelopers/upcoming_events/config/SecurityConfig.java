@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
                 .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
-                .requestMatchers(HttpMethod.GET, endpoint + "/**").permitAll()
+                .requestMatchers(HttpMethod.GET, endpoint + "/**").permitAll() //Very important to could access to our firebase image, dont comment
                 .anyRequest().authenticated())
                 .userDetailsService(service)
                 .httpBasic(basic -> basic.authenticationEntryPoint(myBasicAuthenticationEntryPoint))
