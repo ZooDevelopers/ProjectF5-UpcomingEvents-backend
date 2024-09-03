@@ -42,20 +42,23 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .formLogin(form -> form.disable())
                 .logout(out -> out
-                .logoutUrl(endpoint + "/logout")
-                .deleteCookies("JSESSIONID"))
+                    .logoutUrl(endpoint + "/logout")
+                    .deleteCookies("JSESSIONID"))
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("USER", "ADMIN")
-                 .requestMatchers(HttpMethod.GET, endpoint + "/events").hasAnyRole( "USER", "ADMIN")
-                .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
-                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
-                .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
-                .requestMatchers(HttpMethod.GET, endpoint + "/**").permitAll()
-                .anyRequest().authenticated())
+                    .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(HttpMethod.GET, endpoint + "/events").hasAnyRole( "USER", "ADMIN")
+                    .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
+                    .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                    .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
+                    .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{eventId}/register").authenticated()
+                    .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{evendId}/cancel").authenticated()
+                    .requestMatchers(HttpMethod.GET, endpoint + "/event-registrations/user/{userId}/registered").authenticated()
+                    // .requestMatchers(HttpMethod.GET, endpoint + "/**").permitAll() // todo is it needed? 
+                    .anyRequest().authenticated())
                 .userDetailsService(service)
                 .httpBasic(basic -> basic.authenticationEntryPoint(myBasicAuthenticationEntryPoint))
                 .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
+                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
         http.headers(header -> header.frameOptions(frame -> frame.sameOrigin()));
 
