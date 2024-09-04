@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties("storage")
 public class StorageProperties {
-	private String location = "firebasekey.json";
+	private String location = "firebasekey.json"; //Preguntar a Giaco si esto es lo que se espera en cuanto a rutas
 
 	public String getLocation() {
 		return location;
