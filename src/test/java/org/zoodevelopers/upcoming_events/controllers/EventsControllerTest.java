@@ -52,7 +52,7 @@ class EventsControllerTest {
         event1.setMaxparticipants(100);
         event1.setDescription("Description for Event 1");
         event1.setImageUrl("http://example.com/event1.jpg");
-        event1.setIs_featured("yes");
+        event1.setIs_featured(true);
         event1.setLocation("Location 1");
         event1.setTime("10:00 AM");
 
@@ -63,7 +63,7 @@ class EventsControllerTest {
         event2.setMaxparticipants(150);
         event2.setDescription("Description for Event 2");
         event2.setImageUrl("http://example.com/event2.jpg");
-        event2.setIs_featured("no");
+        event2.setIs_featured(false);
         event2.setLocation("Location 2");
         event2.setTime("2:00 PM");
     }
@@ -90,7 +90,7 @@ class EventsControllerTest {
 
         mockMvc.perform(post("/api/v1/events")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 100, \"description\": \"Description for Event 1\", \"imageUrl\": \"http://example.com/event1.jpg\", \"is_featured\": \"yes\", \"location\": \"Location 1\", \"time\": \"10:00 AM\"}"))
+                .content("{\"title\": \"Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 100, \"description\": \"Description for Event 1\", \"imageUrl\": \"http://example.com/event1.jpg\", \"is_featured\": true, \"location\": \"Location 1\", \"time\": \"10:00 AM\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Event 1"));
 
@@ -103,7 +103,7 @@ class EventsControllerTest {
 
         mockMvc.perform(put("/api/v1/events/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Updated Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 120, \"description\": \"Updated Description\", \"imageUrl\": \"http://example.com/event1_updated.jpg\", \"is_featured\": \"no\", \"location\": \"Updated Location\", \"time\": \"11:00 AM\"}"))
+                .content("{\"title\": \"Updated Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 120, \"description\": \"Updated Description\", \"imageUrl\": \"http://example.com/event1_updated.jpg\", \"is_featured\": false, \"location\": \"Updated Location\", \"time\": \"11:00 AM\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Event 1"));
 
