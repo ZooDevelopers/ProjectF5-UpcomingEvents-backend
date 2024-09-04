@@ -30,7 +30,7 @@ public class Events {
     private int maxparticipants;
     private String description;
     private String imageUrl;
-    private String is_featured;
+    private boolean is_featured;
     private String location;
     private String time;
 
@@ -44,7 +44,7 @@ public class Events {
     }
     
     public Events(Long id, String title, LocalDate date, int maxparticipants, String description, String imageUrl,
-    String is_featured, String location, String time) {
+    boolean is_featured, String location, String time) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -104,11 +104,11 @@ public class Events {
         this.imageUrl = imageUrl;
     }
     
-    public String getIs_featured() {
+    public boolean getIs_featured() {
         return is_featured;
     }
     
-    public void setIs_featured(String is_featured) {
+    public void setIs_featured(boolean is_featured) {
         this.is_featured = is_featured;
     }
     
