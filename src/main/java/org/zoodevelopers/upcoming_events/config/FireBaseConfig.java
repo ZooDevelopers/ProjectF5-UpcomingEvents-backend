@@ -2,6 +2,7 @@ package org.zoodevelopers.upcoming_events.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.zoodevelopers.upcoming_events.exceptions.IOException;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
