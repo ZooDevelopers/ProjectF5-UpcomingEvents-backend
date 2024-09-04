@@ -23,7 +23,7 @@ import java.time.Duration;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("/api/v1/register")
+    @Value("/api/v1")
     String endpoint;
 
     UserService service;
