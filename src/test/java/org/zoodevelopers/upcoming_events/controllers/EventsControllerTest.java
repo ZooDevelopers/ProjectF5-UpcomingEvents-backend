@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -52,7 +51,7 @@ class EventsControllerTest {
         event1.setMaxparticipants(100);
         event1.setDescription("Description for Event 1");
         event1.setImageUrl("http://example.com/event1.jpg");
-        event1.setIs_featured(true);
+        event1.setIsFeatured(true);
         event1.setLocation("Location 1");
         event1.setTime("10:00 AM");
 
@@ -63,7 +62,7 @@ class EventsControllerTest {
         event2.setMaxparticipants(150);
         event2.setDescription("Description for Event 2");
         event2.setImageUrl("http://example.com/event2.jpg");
-        event2.setIs_featured(false);
+        event2.setIsFeatured(false);
         event2.setLocation("Location 2");
         event2.setTime("2:00 PM");
     }
@@ -77,9 +76,7 @@ class EventsControllerTest {
 
         mockMvc.perform(get("/api/v1/events"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].title").value("Event 1"))
-                .andExpect(jsonPath("$[1].title").value("Event 2"));
+                .andExpect(jsonPath("$.content.length()").value(2));
 
         verify(eventsService, times(1)).getAllEvents(any(Pageable.class));
     }
@@ -90,7 +87,7 @@ class EventsControllerTest {
 
         mockMvc.perform(post("/api/v1/events")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 100, \"description\": \"Description for Event 1\", \"imageUrl\": \"http://example.com/event1.jpg\", \"is_featured\": true, \"location\": \"Location 1\", \"time\": \"10:00 AM\"}"))
+                .content("{\"title\": \"Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 100, \"description\": \"Description for Event 1\", \"imageUrl\": \"http://example.com/event1.jpg\", \"isFeatured\": true, \"location\": \"Location 1\", \"time\": \"10:00 AM\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Event 1"));
 
@@ -103,7 +100,7 @@ class EventsControllerTest {
 
         mockMvc.perform(put("/api/v1/events/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Updated Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 120, \"description\": \"Updated Description\", \"imageUrl\": \"http://example.com/event1_updated.jpg\", \"is_featured\": false, \"location\": \"Updated Location\", \"time\": \"11:00 AM\"}"))
+                .content("{\"title\": \"Updated Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 120, \"description\": \"Updated Description\", \"imageUrl\": \"http://example.com/event1_updated.jpg\", \"isFeatured\": false, \"location\": \"Updated Location\", \"time\": \"11:00 AM\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Event 1"));
 

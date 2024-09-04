@@ -36,7 +36,7 @@ public class EventsTest {
         assertEquals(100, event.getMaxparticipants());
         assertEquals("A fun day at the zoo with various activities.", event.getDescription()); 
         assertEquals("http://example.com/image.jpg", event.getImageUrl());
-        assertEquals(true, event.getIs_featured());
+        assertEquals(true, event.getIsFeatured());
         assertEquals("Central Zoo", event.getLocation());
         assertEquals("10:00 AM", event.getTime());
 
@@ -50,7 +50,7 @@ public class EventsTest {
         event.setMaxparticipants(200);
         event.setDescription("Explore the wildlife with experts.");
         event.setImageUrl("http://example.com/newimage.jpg");
-        event.setIs_featured(false);
+        event.setIsFeatured(false);
         event.setLocation("Safari Park");
         event.setTime("09:00 AM");
 
@@ -60,7 +60,7 @@ public class EventsTest {
         assertEquals(200, event.getMaxparticipants());
         assertEquals("Explore the wildlife with experts.", event.getDescription());
         assertEquals("http://example.com/newimage.jpg", event.getImageUrl());
-        assertEquals(false, event.getIs_featured());
+        assertEquals(false, event.getIsFeatured());
         assertEquals("Safari Park", event.getLocation());
         assertEquals("09:00 AM", event.getTime());
     }

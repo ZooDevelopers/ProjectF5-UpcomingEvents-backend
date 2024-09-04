@@ -2,6 +2,8 @@ package org.zoodevelopers.upcoming_events.services;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +30,7 @@ public class EventsService {
         events.setMaxparticipants(updatedEvents.getMaxparticipants());
         events.setDescription(updatedEvents.getDescription());
         events.setImageUrl(updatedEvents.getImageUrl());
-        events.setIs_featured(updatedEvents.getIs_featured());
+        events.setIsFeatured(updatedEvents.getIsFeatured());
         events.setLocation(updatedEvents.getLocation());
         events.setTime(updatedEvents.getTime());
 
@@ -41,6 +43,10 @@ public class EventsService {
 
     public Page<Events> getAllEvents(Pageable pageable) {
         return eventsRepository.findAll(pageable);
+    }
+
+    public List<Events> getFeaturedEvents() {
+        return eventsRepository.findByIsFeaturedTrue();
     }
 
     
