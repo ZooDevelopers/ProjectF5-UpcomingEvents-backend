@@ -28,6 +28,7 @@ public class Events {
     private String title;
     private LocalDate date;
     private int maxparticipants;
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
     private String imageUrl;
     @Column(name = "is_featured")
