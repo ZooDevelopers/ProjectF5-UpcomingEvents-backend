@@ -38,7 +38,7 @@ public class SecurityConfig {
     
     
     @Bean
-public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
         .cors(cors -> cors.configurationSource(corsConfiguration()))
         .csrf(csrf -> csrf.disable())
@@ -47,13 +47,13 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .logoutUrl(endpoint + "/logout")
             .deleteCookies("JSESSIONID"))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(HttpMethod.GET, "api/v1/events").permitAll()
+            .requestMatchers(HttpMethod.GET, "api/v1/events", "/api/v1/events/featured").permitAll()
             .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("USER", "ADMIN")
             .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{eventId}/register").authenticated()
-            .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{evendId}/cancel").authenticated()
+            .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{eventId}/cancel").authenticated()
             .requestMatchers(HttpMethod.GET, endpoint + "/event-registrations/user/{userId}/registered").authenticated()
             .anyRequest().authenticated())
         .userDetailsService(service)
