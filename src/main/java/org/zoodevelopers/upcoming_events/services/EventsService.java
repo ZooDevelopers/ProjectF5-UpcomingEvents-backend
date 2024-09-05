@@ -1,7 +1,5 @@
 package org.zoodevelopers.upcoming_events.services;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,8 +34,16 @@ public class EventsService {
     }
 
     public void deleteEvents(Long id) {
-        eventsRepository.deleteById(id);
+        if (!eventsRepository.existsById(id)) {
+            throw new EventsNotFoundException("Event not found with id " + id);
+        }
+        try {
+            eventsRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to delete event", e);
+        }
     }
+    
 
     public Page<Events> getAllEvents(Pageable pageable) {
         return eventsRepository.findAll(pageable);

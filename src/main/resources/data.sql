@@ -13,4 +13,4 @@ INSERT INTO events (id_events, title, date, maxparticipants, description, image_
 (7, 'Reggae Vibes', '2024-09-29', 400, 'Relájate con las mejores vibras del reggae.', 'https://example.com/images/reggaevibes.jpg', true, 'Parque del Sol', '15:00'),
 (8, 'Folk Festival', '2024-09-30', 350, 'Lo mejor del folk en un solo lugar.', 'https://example.com/images/folkfestival.jpg', false, 'Anfiteatro de la Ciudad', '14:00');
 
-INSERT INTO event_registrations (event_id, user_id) VALUES (1, 1);
+--  INSERT INTO event_registrations (event_id, user_id) VALUES (1, 1);
