@@ -50,7 +50,9 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "api/v1/events", "/api/v1/events/featured").permitAll()
             .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("USER", "ADMIN")
             .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
             .requestMatchers(HttpMethod.DELETE, endpoint + "/events").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.POST, endpoint + "/upload-image").hasRole("ADMIN")
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{eventId}/register").authenticated()
@@ -76,14 +78,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfiguration() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true); // Permite el envío de cookies y credenciales
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // El origen del frontend
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Métodos HTTP permitidos
-        configuration.setAllowedHeaders(Arrays.asList("*")); // Permite todos los encabezados
-        configuration.setMaxAge(Duration.ofHours(1)); // Cacheo de respuestas CORS por 1 hora
+        configuration.setAllowCredentials(true); 
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); 
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); 
+        configuration.setAllowedHeaders(Arrays.asList("*")); 
+        configuration.setMaxAge(Duration.ofHours(1)); 
     
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Aplica la configuración a todos los endpoints
+        source.registerCorsConfiguration("/**", configuration); 
         return source;
     }
     

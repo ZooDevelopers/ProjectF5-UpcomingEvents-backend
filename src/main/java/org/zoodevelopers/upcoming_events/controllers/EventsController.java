@@ -55,7 +55,4 @@ public class EventsController {
     eventsService.deleteEvents(id);
     return ResponseEntity.noContent().build();
 }
-
-   
-
 }
