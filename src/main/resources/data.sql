@@ -20,4 +20,4 @@ INSERT INTO events (id_events, title, date, maxparticipants, description, image_
 (14, 'Rock Legends Tribute', '2024-10-05', 1000, 'Un tributo a las leyendas del rock.', 'https://example.com/images/rocklegendstribute.jpg', true, 'Parque de las Naciones', '20:00'),
 (15, 'Acoustic Sunday', '2024-10-06', 150, 'Un domingo de música acústica en vivo.', 'https://example.com/images/acousticsunday.jpg', false, 'Café Central', '12:00');
 
-INSERT INTO event_registrations (event_id, user_id) VALUES (1, 1);
+--  INSERT INTO event_registrations (event_id, user_id) VALUES (1, 1);

@@ -95,4 +95,9 @@ public class User {
     public void setRegisteredEvents(Set<Events> registeredEvents) {
         this.registeredEvents = registeredEvents;
     }
+
+    public static Object builder() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'builder'");
+    }
 }
