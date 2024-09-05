@@ -78,14 +78,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfiguration() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true); // Permite el envío de cookies y credenciales
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); // El origen del frontend
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Métodos HTTP permitidos
-        configuration.setAllowedHeaders(Arrays.asList("*")); // Permite todos los encabezados
-        configuration.setMaxAge(Duration.ofHours(1)); // Cacheo de respuestas CORS por 1 hora
+        configuration.setAllowCredentials(true); 
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173")); 
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); 
+        configuration.setAllowedHeaders(Arrays.asList("*")); 
+        configuration.setMaxAge(Duration.ofHours(1)); 
     
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Aplica la configuración a todos los endpoints
+        source.registerCorsConfiguration("/**", configuration); 
         return source;
     }
     
