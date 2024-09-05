@@ -30,7 +30,8 @@ public class Events {
     private int maxparticipants;
     private String description;
     private String imageUrl;
-    private boolean is_featured;
+    @Column(name = "is_featured")
+    private boolean isFeatured;
     private String location;
     private String time;
 
@@ -44,14 +45,14 @@ public class Events {
     }
     
     public Events(Long id, String title, LocalDate date, int maxparticipants, String description, String imageUrl,
-    boolean is_featured, String location, String time) {
+    boolean isFeatured, String location, String time) {
         this.id = id;
         this.title = title;
         this.date = date;
         this.maxparticipants = maxparticipants;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.is_featured = is_featured;
+        this.isFeatured = isFeatured;
         this.location = location;
         this.time = time;
     }
@@ -104,12 +105,12 @@ public class Events {
         this.imageUrl = imageUrl;
     }
     
-    public boolean getIs_featured() {
-        return is_featured;
+    public boolean getIsFeatured() {
+        return isFeatured;
     }
     
-    public void setIs_featured(boolean is_featured) {
-        this.is_featured = is_featured;
+    public void setIsFeatured(boolean isFeatured) {
+        this.isFeatured = isFeatured;
     }
     
     public String getLocation() {
