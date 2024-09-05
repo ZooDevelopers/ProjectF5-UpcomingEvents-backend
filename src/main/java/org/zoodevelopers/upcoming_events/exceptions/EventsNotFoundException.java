@@ -1,4 +1,4 @@
-package org.zoodevelopers.upcoming_events.services.exceptions;
+package org.zoodevelopers.upcoming_events.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

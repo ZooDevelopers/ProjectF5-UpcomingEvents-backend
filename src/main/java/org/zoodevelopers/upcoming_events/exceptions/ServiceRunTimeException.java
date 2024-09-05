@@ -1,4 +1,4 @@
-package org.zoodevelopers.upcoming_events.services.exceptions;
+package org.zoodevelopers.upcoming_events.exceptions;
 
 public class ServiceRunTimeException extends RuntimeException {
     

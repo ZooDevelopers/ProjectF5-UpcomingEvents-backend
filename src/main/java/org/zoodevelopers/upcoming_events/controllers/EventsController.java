@@ -53,6 +53,4 @@ public class EventsController {
     public void deleteEvents(@PathVariable Long id) {
         eventsService.deleteEvents(id);
     }
-   
-
 }
