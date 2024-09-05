@@ -1,8 +1,4 @@
-<<<<<<< HEAD
     package org.zoodevelopers.upcoming_events.models;
-=======
-package org.zoodevelopers.upcoming_events.models;
->>>>>>> bb89f832908554bca757ae02793b6acb9802910f
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
