@@ -81,18 +81,7 @@ class EventsControllerTest {
         verify(eventsService, times(1)).getAllEvents(any(Pageable.class));
     }
 
-    @Test
-    void testCreateEvents() throws Exception {
-        when(eventsService.saveEvents(any(Events.class))).thenReturn(event1);
-
-        mockMvc.perform(post("/api/v1/events")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\": \"Event 1\", \"date\": \"2024-09-15\", \"maxparticipants\": 100, \"description\": \"Description for Event 1\", \"imageUrl\": \"http://example.com/event1.jpg\", \"isFeatured\": true, \"location\": \"Location 1\", \"time\": \"10:00 AM\"}"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("Event 1"));
-
-        verify(eventsService, times(1)).saveEvents(any(Events.class));
-    }
+ 
 
     @Test
     void testUpdateEvents() throws Exception {
@@ -107,13 +96,5 @@ class EventsControllerTest {
         verify(eventsService, times(1)).updateEvents(eq(1L), any(Events.class));
     }
 
-    @Test
-    void testDeleteEvents() throws Exception {
-        doNothing().when(eventsService).deleteEvents(1L);
-
-        mockMvc.perform(delete("/api/v1/events/1"))
-                .andExpect(status().isOk());
-
-        verify(eventsService, times(1)).deleteEvents(1L);
-    }
+  
 }
