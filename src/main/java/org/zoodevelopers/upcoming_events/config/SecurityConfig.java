@@ -50,6 +50,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .requestMatchers(HttpMethod.GET, "api/v1/events").permitAll()
             .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("USER", "ADMIN")
             .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.DELETE, endpoint + "/events").hasRole("ADMIN")
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{eventId}/register").authenticated()
