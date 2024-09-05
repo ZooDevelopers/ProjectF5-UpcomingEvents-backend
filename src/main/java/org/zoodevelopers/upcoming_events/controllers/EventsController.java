@@ -40,7 +40,7 @@ public class EventsController {
         return eventsService.getFeaturedEvents();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/add")
     public Events createEvents(@RequestBody Events events) {
         return eventsService.saveEvents(events);
     }
@@ -52,7 +52,7 @@ public class EventsController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvents(@PathVariable Long id) {
-    eventsService.deleteEvents(id);
-    return ResponseEntity.noContent().build();
-}
+        eventsService.deleteEvents(id);
+        return ResponseEntity.noContent().build();
+    }
 }
