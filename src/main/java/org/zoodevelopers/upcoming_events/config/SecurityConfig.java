@@ -50,9 +50,13 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "api/v1/events", "/api/v1/events/featured").permitAll()
             .requestMatchers(HttpMethod.GET, endpoint + "/login").hasAnyRole("USER", "ADMIN")
             .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
+<<<<<<< HEAD
             .requestMatchers(HttpMethod.POST, endpoint + "/events").hasRole("ADMIN")
             .requestMatchers(HttpMethod.DELETE, endpoint + "/events").hasRole("ADMIN")
             .requestMatchers(HttpMethod.POST, endpoint + "/upload-image").hasRole("ADMIN")
+=======
+            .requestMatchers(HttpMethod.DELETE, endpoint + "/events").hasRole("ADMIN")
+>>>>>>> bb89f832908554bca757ae02793b6acb9802910f
             .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/register").permitAll()
             .requestMatchers(HttpMethod.POST, endpoint + "/event-registrations/{eventId}/register").authenticated()

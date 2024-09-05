@@ -10,7 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.zoodevelopers.upcoming_events.models.Events;
 import org.zoodevelopers.upcoming_events.repositories.EventsRepository;
+<<<<<<< HEAD
 import org.zoodevelopers.upcoming_events.exceptions.EventsNotFoundException;
+=======
+import org.zoodevelopers.upcoming_events.services.exceptions.EventsNotFoundException;
+>>>>>>> bb89f832908554bca757ae02793b6acb9802910f
 
 @Service
 public class EventsService {

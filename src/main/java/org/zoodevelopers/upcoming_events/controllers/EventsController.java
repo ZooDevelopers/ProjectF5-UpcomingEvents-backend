@@ -55,4 +55,10 @@ public class EventsController {
     eventsService.deleteEvents(id);
     return ResponseEntity.noContent().build();
 }
+<<<<<<< HEAD
+=======
+
+   
+
+>>>>>>> bb89f832908554bca757ae02793b6acb9802910f
 }
